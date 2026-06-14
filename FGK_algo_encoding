@@ -49,6 +49,9 @@ int  Z;
 
 int  q;
 
+char cc[256];
+int  next=0;
+
 void initialize()
 {
 int  i;
