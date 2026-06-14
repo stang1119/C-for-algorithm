@@ -49,9 +49,6 @@ int  Z;
 
 int  q;
 
-char cc[256];
-int  next=0;
-
 void initialize()
 {
 int  i;
@@ -225,17 +222,12 @@ while( q > 0 ){
 int main()
 {
 int  i;
-char code[200];
+char code[32];
 initialize();
-scanf("%s",code);
-
-for( i = 0; i < strlen(code); i ++ ){
-   putchar('\n');
-   putchar(code[i]);
-   putchar(' ');
-   encode( code[i] );
-   update( code[i] );
-   }
+strcpy(code, "ABACABCADDDCADBB");
+for( i = 0; i < strlen(code); i ++ ) {
+      encode( code[i] );
+      update( code[i] );     }
 }
 
 /* test sample
