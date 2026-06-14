@@ -49,6 +49,9 @@ int  Z;
 
 int  q;
 
+char cc[256];
+int  next=0;
+
 void initialize()
 {
 int  i;
@@ -84,24 +87,24 @@ B[Z] = H;
 int decode()
 {
 int  q, j;
-char cc;
+
 q = Z;
 while( A[C[q]] != q ) {
-   if( (cc=getc(stdin)) == '#') 
+   if( cc[next] == '#') 
       return (-1);   
-   q = 2 * C[q] - 1 + (cc=='1'?1:0); 
+   q = 2 * C[q] - 1 + (cc[next++]=='1'?1:0); 
    }
 if( C[q] == 0 ){        /*  decode zero weight  */
    q = 0;
    for( j = 1; j <= E; j ++ ) {
-      if( (cc=getc(stdin)) == '#') 
+      if( cc[next] == '#') 
          return (-1); 
-      q = 2 * q + (cc=='1'?1:0);
+      q = 2 * q + (cc[next++]=='1'?1:0);
       }
    if( q < R ) {
-      if( (cc=getc(stdin)) == '#') 
+      if( cc[next] == '#') 
          return (-1); 
-      q = 2 * q + (cc=='1'?1:0);
+      q = 2 * q + (cc[next++]=='1'?1:0);
       }
    else
       q = q + R;
@@ -222,6 +225,7 @@ int main()
 {
 int k;
 initialize();
+strcpy(cc, "0100000100100001010001000011101001010001000100110111011111110001001#");
 while( 1 ){
    k = decode();
    if( k == -1 )
